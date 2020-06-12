@@ -1,0 +1,56 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  annotations:
+    commit.stack.appsody.dev/contextDir: /incubator/nodejs-express
+    commit.stack.appsody.dev/date: Wed Jun 10 15:34:28 2020 +0100
+    commit.stack.appsody.dev/message: 'meta: Replace the maintainer info for node
+      express stacks (#829)'
+    image.opencontainers.org/created: "2020-06-12T11:24:48-05:00"
+    stack.appsody.dev/authors: Gireesh Punathil <gireeshpunathil>
+    stack.appsody.dev/configured: docker.io/appsody/nodejs-express:0.4
+    stack.appsody.dev/created: "2020-06-10T14:37:32Z"
+    stack.appsody.dev/description: Express web framework for Node.js
+    stack.appsody.dev/digest: sha256:10ef27f63ce277b69666f8a12723d223edc625492cdf95df96232ebbccaab3bb
+    stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/nodejs-express/README.md
+    stack.appsody.dev/licenses: Apache-2.0
+    stack.appsody.dev/revision: 41e6af7f5aa970da76cd1b2b10b17ee088d43cb4
+    stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/nodejs-express/image
+    stack.appsody.dev/tag: docker.io/appsody/nodejs-express:0.4.11
+    stack.appsody.dev/title: Node.js Express
+    stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/nodejs-express
+  creationTimestamp: null
+  labels:
+    image.opencontainers.org/title: my-appsody-project
+    stack.appsody.dev/id: nodejs-express
+    stack.appsody.dev/version: 0.4.11
+  name: my-appsody-project
+spec:
+  applicationImage: dev.local/my-appsody-project
+  createKnativeService: false
+  expose: true
+  livenessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /live
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 2
+  monitoring:
+    labels:
+      k8s-app: my-appsody-project
+  readinessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /ready
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 2
+    timeoutSeconds: 1
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+    port: 3000
+    type: NodePort
+  stack: nodejs-express
+  version: 1.0.0
